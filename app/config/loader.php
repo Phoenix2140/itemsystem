@@ -1,4 +1,9 @@
 <?php 
+	/**
+	 * Se inicia la session
+	 */
+	session_start();
+	
 	/*
 	* Se carga el soporte de base de datos básico
 	* funciones generales que ayudarán al manejo de base

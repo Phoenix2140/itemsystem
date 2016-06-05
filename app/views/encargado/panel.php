@@ -6,10 +6,10 @@
 			</div>
 			<div class="row panel-botones">
 				<div class="col-xs-12 col-sm-6 col-sm-offset-3">
-					<a href="equipo.html" type="button" class="btn btn-primary btn-lg btn-block btn-panel"><i class="fa fa-laptop"></i> Administrar Equipos</a>
-					<a href="usuarios.html" type="button" class="btn btn-primary btn-lg btn-block btn-panel"><i class="fa fa-users"></i> Ver Usuarios</a>
-					<a href="departamentos.html" type="button" class="btn btn-primary btn-lg btn-block btn-panel"><i class="fa fa-building"></i> Ver Departamentos</a>
-					<a href="index.html" type="button" class="btn btn-danger btn-lg btn-block btn-panel"><i class="fa fa-user-times"></i> Salir</a>
+					<a href="<?php echo $baseUrl; ?>/equipos" type="button" class="btn btn-primary btn-lg btn-block btn-panel"><i class="fa fa-laptop"></i> Administrar Equipos</a>
+					<a href="<?php echo $baseUrl; ?>/funcionarios" type="button" class="btn btn-primary btn-lg btn-block btn-panel"><i class="fa fa-users"></i> Ver Funcionarios</a>
+					<a href="<?php echo $baseUrl; ?>/departamentos" type="button" class="btn btn-primary btn-lg btn-block btn-panel"><i class="fa fa-building"></i> Ver Departamentos</a>
+					<a href="<?php echo $baseUrl; ?>/salir" type="button" class="btn btn-danger btn-lg btn-block btn-panel"><i class="fa fa-user-times"></i> Salir</a>
 				</div>
 			</div>
 		</div>
