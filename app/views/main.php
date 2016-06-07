@@ -15,6 +15,7 @@
 	<footer class="footer">
 		<p>ITEMSYSTEM 2016</p>
 	</footer>
-	
+	<script src="<?php echo $baseUrl; ?>/js/jquery-1.12.3.min.js"></script>
+	<script src="<?php echo $baseUrl; ?>/js/bootstrap.min.js"></script>
 </body>
 </html>

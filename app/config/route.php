@@ -16,6 +16,7 @@
 	require_once($config->get('controllersDir').'Equipos.php');
 	require_once($config->get('controllersDir').'Departamentos.php');
 	require_once($config->get('controllersDir').'Funcionarios.php');
+	require_once($config->get('controllersDir').'Usuarios.php');
 	require_once($config->get('controllersDir').'Salir.php');
 	$home = new Home($config);
 	$login = new Login($config);
@@ -23,6 +24,7 @@
 	$equipo = new Equipos($config);
 	$departamento = new Departamentos($config);
 	$funcionario = new Funcionarios($config);
+	$usuario = new Usuarios($config);
 	$salir = new Salir($config);
 
 	
@@ -125,6 +127,16 @@
 					header('Location: '.$config->get('baseUrl'));
 				}
 				break;
+			case 'usuarios':
+				/**
+				 * Llamamos a la función principal
+				 */
+				if(isset($_SESSION["tipo"]) && ($_SESSION["tipo"]) == 'admin'){
+					return $usuario->indexAction();
+				}else{
+					header('Location: '.$config->get('baseUrl'));
+				}
+				break;
 
 			case 'salir':
 				return $salir->salir();
@@ -146,6 +158,9 @@
 				
 				$login->login($_POST);
 
+				break;
+			case 'usuarios':
+				$usuario->detectarAccion($_POST);
 				break;
 			
 			default:

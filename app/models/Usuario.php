@@ -5,7 +5,7 @@
 	 *		id_usuario 		INT
 	 *		tipoUsuario 	VARCHAR(45)
 	 *		nombreUsuario	VARCHAR(45)
-	 * 		contraseña		VARCHAR(45)
+	 * 		pass		VARCHAR(45)
 	 */
 	Class Usuario{
 		private $db;
@@ -22,7 +22,7 @@
 		 */
 		public function crearUsuario($tipo, $nombre, $pass){
 			$this->db->query("INSERT INTO Ususario (tipoUsuario, 
-				nombreUsuario, contraseña) VALUES (:tipo, :nombre, :pass)");
+				nombreUsuario, pass) VALUES (:tipo, :nombre, :pass)");
 
 			/**
 			 * Se unen los valores asignados a la query y se limpian
@@ -50,7 +50,7 @@
 		}
 
 		/**
-		 * función que obtiene el usuario por su nombre y contraseña
+		 * función que obtiene el usuario por su nombre y pass
 		 */
 		public function getUsuarioLogin($nombre, $pass){
 			$this->db->query("SELECT * FROM Ususario 
@@ -70,11 +70,26 @@
 		 */
 		public function updateUsuario($id, $tipo, $nombre, $pass){
 			$this->db->query("UPDATE Ususario SET tipoUsuario=:tipo,
-			nombreUsuario=:nombre, contraseña=:pass WHERE id_usuario=:id");
+			nombreUsuario=:nombre, pass=:pass WHERE id_usuario=:id");
 
 			$this->db->bind(':tipo', $tipo);
 			$this->db->bind(':nombre', $nombre);
 			$this->db->bind(':pass', $pass);
+			$this->db->bind(':id', $id);
+
+			$this->db->execute();
+		}
+
+		/**
+		 * Función que actualiza los datos del Usuario Sin 
+		 * actualizar la contraseña
+		 */
+		public function updateUsuarioSinPass($id, $tipo, $nombre){
+			$this->db->query("UPDATE Ususario SET tipoUsuario=:tipo,
+			nombreUsuario=:nombre WHERE id_usuario=:id");
+
+			$this->db->bind(':tipo', $tipo);
+			$this->db->bind(':nombre', $nombre);
 			$this->db->bind(':id', $id);
 
 			$this->db->execute();

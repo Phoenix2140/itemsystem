@@ -1,7 +1,7 @@
 <div class="container col-xs-12 col-sm-10 col-sm-offset-1">
 		<div class="panel panel-info">
 			<div class="panel-heading">
-				<h3 class="panel-title"><i class="fa fa-users"></i> Usuarios</h3>
+				<h3 class="panel-title"><i class="fa fa-users"></i> Funcionarios</h3>
 			</div>
 			<div class="panel-body">
 				<div class="table-responsive">
@@ -77,7 +77,7 @@
 				</div>
 
 				<div class="col-xs-12 col-sm-3 col-sm-offset-3">
-					<button type="button" class="btn btn-default btn-block"><i class="fa fa-arrow-circle-left"></i> Volver</button>
+					<a href="<?php echo $baseUrl; ?>/panel" type="button" class="btn btn-default btn-block"><i class="fa fa-arrow-circle-left"></i> Volver</a>
 				</div>
 				<div class="col-xs-12 col-sm-3">
 					<button type="button" class="btn btn-primary btn-block"><i class="fa fa-plus"></i> Crear</button>
