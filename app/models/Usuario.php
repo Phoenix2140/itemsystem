@@ -54,7 +54,7 @@
 		 */
 		public function getUsuarioLogin($nombre, $pass){
 			$this->db->query("SELECT * FROM Ususario 
-				WHERE nombreUsuario=:nombre AND contraseña=:pass");
+				WHERE nombreUsuario=:nombre AND pass=:pass");
 
 			$this->db->bind(':nombre', $nombre);
 			$this->db->bind(':pass', $pass);

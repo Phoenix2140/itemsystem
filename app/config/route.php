@@ -16,12 +16,14 @@
 	require_once($config->get('controllersDir').'Equipos.php');
 	require_once($config->get('controllersDir').'Departamentos.php');
 	require_once($config->get('controllersDir').'Funcionarios.php');
+	require_once($config->get('controllersDir').'Salir.php');
 	$home = new Home($config);
 	$login = new Login($config);
 	$panel = new Panel($config);
 	$equipo = new Equipos($config);
 	$departamento = new Departamentos($config);
 	$funcionario = new Funcionarios($config);
+	$salir = new Salir($config);
 
 	
 	/**
@@ -59,7 +61,12 @@
 				 * Se llama y retorna la función indexAction() de la clase
 				 * Home
 				 */
-				return $home->indexAction();
+				if (isset($_SESSION["user"]) && !is_null($_SESSION["user"])) {
+					header('Location: '.$config->get('baseUrl').'/panel');
+				}else{
+					return $home->indexAction();
+				}
+				
 				break; // Se finaliza el switch
 			
 			case 'login': 
@@ -67,35 +74,60 @@
 				 * Llamamos a la función indexAction, para mostrar la vista
 				 * principal
 				 */
-				return $login->indexAction();
+				if(isset($_SESSION["user"]) && !is_null($_SESSION["user"])){
+					header('Location: '.$config->get('baseUrl').'/panel');
+				}else{
+					return $login->indexAction();
+				}
+				
 				break;
 
 			case 'panel':
 				/**
 				 * Llamamos a la función principal
 				 */
-				return $panel->indexAction();
+				if(isset($_SESSION["user"]) && !is_null($_SESSION["user"])){
+					return $panel->indexAction();
+				}else{
+					header('Location: '.$config->get('baseUrl'));
+				}
 				break;
 
 			case 'equipos':
 				/**
 				 * Llamamos a la función principal
 				 */
-				return $equipo->indexAction();
+				if(isset($_SESSION["user"]) && !is_null($_SESSION["user"])){
+					return $equipo->indexAction();
+				}else{
+					header('Location: '.$config->get('baseUrl'));
+				}
 				break;
 
 			case 'departamentos':
 				/**
 				 * Llamamos a la función principal
 				 */
-				return $departamento->indexAction();
+				if(isset($_SESSION["user"]) && !is_null($_SESSION["user"])){
+					return $departamento->indexAction();
+				}else{
+					header('Location: '.$config->get('baseUrl'));
+				}
 				break;
 
 			case 'funcionarios':
 				/**
 				 * Llamamos a la función principal
 				 */
-				return $funcionario->indexAction();
+				if(isset($_SESSION["user"]) && !is_null($_SESSION["user"])){
+					return $funcionario->indexAction();
+				}else{
+					header('Location: '.$config->get('baseUrl'));
+				}
+				break;
+
+			case 'salir':
+				return $salir->salir();
 				break;
 			
 			default:
@@ -104,10 +136,22 @@
 		}
 
 	}elseif($ruta->get() == 'POST'){
+		$enlace = $ruta->enlace();
 		/**
 		 * No está implementado, pero es similar a los pasos del
 		 * Método GET con el switch
 		 */
+		switch ($enlace[1]) {
+			case 'login':
+				
+				$login->login($_POST);
+
+				break;
+			
+			default:
+				# code...
+				break;
+		}
 	}else{
 		/**
 		 * Pueden agregarse más Métodos

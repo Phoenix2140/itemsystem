@@ -6,6 +6,7 @@
 	Class Login{
 		private $config;
 		private $view;
+		private $usuario;
 
 		/**
 		 * Se crea la función construct, que recibe la configuración y
@@ -22,6 +23,9 @@
 			 */
 			require_once($this->config->get('baseDir').'Template.php');
 			$this->view = new Template();
+
+			require_once($this->config->get('modelsDir').'Usuario.php');
+			$this->usuario = new Usuario($this->config);
 		}
 
 		/**
@@ -54,6 +58,21 @@
 			 * Mostramos la vista rendereada
 			 */
 			echo $this->view->render($this->config->get('viewsDir').'main.php');
+		}
+
+		public function login($datos){
+			if (!isset($_SESSION["user"])) {
+				$user = $this->usuario->getUsuarioLogin($datos["l-ususario"], $datos["l-passwd"]);
+
+				if( isset($user["id_usuario"]) && !is_null($user["id_usuario"])){
+					$_SESSION["user"] = $user["nombreUsuario"];
+					$_SESSION["tipo"] = $user["tipoUsuario"];
+
+					header('Location: '.$this->config->get('baseUrl').'/panel');
+				}else{
+					echo json_encode(array('result' => false));
+				}
+			}
 		}
 	}
  ?>

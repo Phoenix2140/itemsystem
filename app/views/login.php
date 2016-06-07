@@ -8,11 +8,11 @@
 							</div>
 							<div class="form-group">
 								<!-- <label for="l-ususario">Usuario</label> -->
-								<input type="text" name="l-ususario" id="l-ususario" class="form-control" value="" required="required" pattern="" placeholder="Ingrese su Usuario">
+								<input type="text" name="l-ususario" id="l-ususario" class="form-control" required="required" placeholder="Ingrese su Usuario">
 							</div>
 							<div class="form-group">
 								<!-- <label for="l-passwd">Contraseña</label> -->
-								<input type="password" name="l-passwd" id="l-passwd" class="form-control" value="" required="required" pattern="" placeholder="Ingrese su Contraseña">
+								<input type="password" name="l-passwd" id="l-passwd" class="form-control" required="required" placeholder="Ingrese su Contraseña">
 							</div>
 					
 							<div class="form-group">
