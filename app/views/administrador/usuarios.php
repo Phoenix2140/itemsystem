@@ -36,7 +36,7 @@
 					<a href="<?php echo $baseUrl; ?>/panel" type="button" class="btn btn-default btn-block"><i class="fa fa-arrow-circle-left"></i> Volver</a>
 				</div>
 				<div class="col-xs-12 col-sm-3">
-					<a class="btn btn-primary btn-block" data-toggle="modal" href="#crear-usuario"><i class="fa fa-plus"></i> Crear</a>
+					<a class="btn btn-primary btn-block" data-toggle="modal" href="#crear-usuario"><i class="fa fa-user-plus"></i> Crear Usuario</a>
 				</div>
 			</div>
 		</div>

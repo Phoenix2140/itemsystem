@@ -160,7 +160,15 @@
 
 				break;
 			case 'usuarios':
+
 				$usuario->detectarAccion($_POST);
+
+				break;
+
+			case 'departamentos':
+
+				$departamento->detectarAccion($_POST);
+				
 				break;
 			
 			default:

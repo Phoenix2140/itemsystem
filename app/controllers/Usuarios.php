@@ -149,7 +149,8 @@
 					}
 				}
 			}else{
-				echo json_encode(array('return' => false));
+				// echo json_encode(array('return' => false));
+				header('Location: '.$this->config->get('baseUrl').'/usuarios');
 			}
 
 		}

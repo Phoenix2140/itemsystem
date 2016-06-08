@@ -15,11 +15,11 @@
 			<div class="collapse navbar-collapse navbar-ex1-collapse">
 				
 				<ul class="nav navbar-nav navbar-right">
-					<li <?php if($menuVal== 'panel'){echo "class=\"active\"";} ?>><a href="<?php echo $baseUrl; ?>/panel"><i class="fa fa-laptop"></i> Panel</a></li>
+					<li <?php if($menuVal== 'panel'){echo "class=\"active\"";} ?>><a href="<?php echo $baseUrl; ?>/panel"><i class="fa fa-list-alt"></i> Panel</a></li>
 					<li <?php if($menuVal== 'equipos'){echo "class=\"active\"";} ?>><a href="<?php echo $baseUrl; ?>/equipos"><i class="fa fa-laptop"></i> Equipos</a></li>
 					<li <?php if($menuVal== 'funcionarios'){echo "class=\"active\"";} ?>><a href="<?php echo $baseUrl; ?>/funcionarios"><i class="fa fa-users"></i> Funcionarios</a></li>
 					<li <?php if($menuVal== 'departamentos'){echo "class=\"active\"";} ?>><a href="<?php echo $baseUrl; ?>/departamentos"><i class="fa fa-building"></i> Departamentos</a></li>
-					<li <?php if($menuVal== 'usuarios'){echo "class=\"active\"";} ?>><a href="<?php echo $baseUrl; ?>/usuarios"><i class="fa fa-building"></i> Usuarios</a></li>
+					<li <?php if($menuVal== 'usuarios'){echo "class=\"active\"";} ?>><a href="<?php echo $baseUrl; ?>/usuarios"><i class="fa fa-user"></i> Usuarios</a></li>
 					<li><a href="<?php echo $baseUrl; ?>/salir"><i class="fa fa-user-times"></i> Salir</a></li>
 				</ul>
 			</div><!-- /.navbar-collapse -->

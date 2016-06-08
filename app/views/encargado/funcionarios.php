@@ -49,8 +49,11 @@
 					</table>
 				</div>
 
-				<div class="col-xs-12 col-sm-4 col-sm-offset-4">
+				<div class="col-xs-12 col-sm-3 col-sm-offset-3">
 					<a href="<?php echo $baseUrl; ?>/panel" type="button" class="btn btn-default btn-block"><i class="fa fa-arrow-circle-left"></i> Volver</a>
+				</div>
+				<div class="col-xs-12 col-sm-3">
+					<button type="button" class="btn btn-primary btn-block"><i class="fa fa-plus"></i> Crear Funcionario</button>
 				</div>
 			</div>
 		</div>

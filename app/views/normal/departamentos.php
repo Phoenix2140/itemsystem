@@ -14,26 +14,13 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>1</td>
-								<td>Finanzas</td>
-								<td>3</td>
-							</tr>
-							<tr>
-								<td>2</td>
-								<td>Gerencia</td>
-								<td>1</td>
-							</tr>
-							<tr>
-								<td>3</td>
-								<td>RRHH</td>
-								<td>5</td>
-							</tr>
-							<tr>
-								<td>4</td>
-								<td>Secretaría</td>
-								<td>9</td>
-							</tr>
+							<?php foreach ($listDepartamentos as $departamento) { ?>
+								<tr>
+									<td><?php echo $departamento["id_depto"]; ?></td>
+									<td><?php echo $departamento["nombre_depto"]; ?></td>
+									<td><?php echo $equiposPorDepartamento[$departamento["id_depto"]]; ?></td>
+								</tr>
+							<?php } ?>
 						</tbody>
 					</table>
 				</div>
