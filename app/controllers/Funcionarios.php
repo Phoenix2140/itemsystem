@@ -41,15 +41,37 @@
 			 */
 			$this->view->baseUrl = $this->config->get('baseUrl');
 
-			/**
-			 * Agregamos el menú a la vista
-			 */
-			$this->view->menu = $this->view->render($this->config->get('viewsDir').'menu/encargado.php');
+			if ($_SESSION["tipo"] == 'admin') {
+				/**
+				 * Agregamos el menu a la vista
+				 */
+				$this->view->menu = $this->view->render($this->config->get('viewsDir').'menu/admin.php');
 
-			/**
-			 * Agregamos el contenido a la vista
-			 */
-			$this->view->contenido = $this->view->render($this->config->get('viewsDir').'encargado/funcionarios.php');
+				/**
+				 * Agregamos la pantalla panel a la vista
+				 */
+				$this->view->contenido = $this->view->render($this->config->get('viewsDir').'administrador/funcionarios.php');
+			}elseif($_SESSION["tipo"] == 'encargado'){
+				/**
+				 * Agregamos el menú a la vista
+				 */
+				$this->view->menu = $this->view->render($this->config->get('viewsDir').'menu/encargado.php');
+
+				/**
+				 * Agregamos el contenido a la vista
+				 */
+				$this->view->contenido = $this->view->render($this->config->get('viewsDir').'encargado/funcionarios.php');
+			}else{
+				/**
+				 * Agregamos el menu a la vista
+				 */
+				$this->view->menu = $this->view->render($this->config->get('viewsDir').'menu/encargado.php');
+
+				/**
+				 * Agregamos la pantalla panel a la vista
+				 */
+				$this->view->contenido = $this->view->render($this->config->get('viewsDir').'normal/funcionarios.php');
+			}
 
 			/**
 			 * Mostramos la vista final

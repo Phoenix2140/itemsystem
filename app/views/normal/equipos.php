@@ -14,7 +14,6 @@
 								<th>Estado</th>
 								<th>Utilizable</th>
 								<th>Departamento</th>
-								<th>Acciones</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -25,10 +24,6 @@
 								<td>120 GB</td>
 								<td>Municipalidad</td>
 								<td>Secretaria</td>
-								<td>
-									<button type="button" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Editar</button>
-									<button type="button" class="btn btn-danger btn-xs"><i class="fa fa-minus-circle"></i> Eliminar</button>
-								</td>
 							</tr>
 							<tr>
 								<td>2</td>
@@ -37,10 +32,6 @@
 								<td>120 GB</td>
 								<td>Municipalidad</td>
 								<td>Relaciones Públicas</td>
-								<td>
-									<button type="button" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Editar</button>
-									<button type="button" class="btn btn-danger btn-xs"><i class="fa fa-minus-circle"></i> Eliminar</button>
-								</td>
 							</tr>
 							<tr>
 								<td>3</td>
@@ -49,10 +40,6 @@
 								<td>120 GB</td>
 								<td>Oficina Alcaldía</td>
 								<td>Alcalde</td>
-								<td>
-									<button type="button" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Editar</button>
-									<button type="button" class="btn btn-danger btn-xs"><i class="fa fa-minus-circle"></i> Eliminar</button>
-								</td>
 							</tr>
 							<tr>
 								<td>4</td>
@@ -61,10 +48,6 @@
 								<td>120 GB</td>
 								<td>DataCenter</td>
 								<td>Informático</td>
-								<td>
-									<button type="button" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Editar</button>
-									<button type="button" class="btn btn-danger btn-xs"><i class="fa fa-minus-circle"></i> Eliminar</button>
-								</td>
 							</tr>
 							<tr>
 								<td>5</td>
@@ -73,20 +56,13 @@
 								<td>120 GB</td>
 								<td>Gimnacio Municipal</td>
 								<td>Encargado Gimnasio</td>
-								<td>
-									<button type="button" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Editar</button>
-									<button type="button" class="btn btn-danger btn-xs"><i class="fa fa-minus-circle"></i> Eliminar</button>
-								</td>
 							</tr>
 						</tbody>
 					</table>
 				</div>
 
-				<div class="col-xs-12 col-sm-3 col-sm-offset-3">
+				<div class="col-xs-12 col-sm-4 col-sm-offset-4">
 					<a href="<?php echo $baseUrl; ?>/panel" type="button" class="btn btn-default btn-block"><i class="fa fa-arrow-circle-left"></i> Volver</a>
-				</div>
-				<div class="col-xs-12 col-sm-3">
-					<button type="button" class="btn btn-primary btn-block"><i class="fa fa-plus"></i> Crear</button>
 				</div>
 			</div>
 		</div>

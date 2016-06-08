@@ -73,7 +73,7 @@
 				/**
 				 * Agregamos la pantalla panel a la vista
 				 */
-				$this->view->contenido = $this->view->render($this->config->get('viewsDir').'encargado/panel.php');
+				$this->view->contenido = $this->view->render($this->config->get('viewsDir').'normal/panel.php');
 			}
 
 			/**

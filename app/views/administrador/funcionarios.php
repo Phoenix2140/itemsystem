@@ -1,78 +1,66 @@
 <div class="container col-xs-12 col-sm-10 col-sm-offset-1">
 		<div class="panel panel-info">
 			<div class="panel-heading">
-				<h3 class="panel-title"><i class="fa fa-users"></i> Equipos</h3>
+				<h3 class="panel-title"><i class="fa fa-users"></i> Funcionarios</h3>
 			</div>
 			<div class="panel-body">
 				<div class="table-responsive">
 					<table class="table table-hover table-striped">
 						<thead>
 							<tr>
-								<th>ID</th>
-								<th>Tipo</th>
-								<th>Descripción</th>
-								<th>Estado</th>
-								<th>Utilizable</th>
+								<th>RUT</th>
+								<th>Nombre</th>
 								<th>Departamento</th>
+								<th>Ubicación</th>
 								<th>Acciones</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr>
-								<td>1</td>
-								<td>Intel Celeron</td>
-								<td>1 GB</td>
-								<td>120 GB</td>
-								<td>Municipalidad</td>
-								<td>Secretaria</td>
-								<td>
-									<button type="button" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Editar</button>
-									<button type="button" class="btn btn-danger btn-xs"><i class="fa fa-minus-circle"></i> Eliminar</button>
-								</td>
-							</tr>
-							<tr>
-								<td>2</td>
-								<td>AMD</td>
-								<td>1 GB</td>
-								<td>120 GB</td>
-								<td>Municipalidad</td>
-								<td>Relaciones Públicas</td>
-								<td>
-									<button type="button" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Editar</button>
-									<button type="button" class="btn btn-danger btn-xs"><i class="fa fa-minus-circle"></i> Eliminar</button>
-								</td>
-							</tr>
-							<tr>
-								<td>3</td>
-								<td>Intel Core i5</td>
-								<td>4 GB</td>
-								<td>120 GB</td>
-								<td>Oficina Alcaldía</td>
+								<td>111111</td>
+								<td>Juan </td>
 								<td>Alcalde</td>
+								<td>Alcaldía</td>
 								<td>
 									<button type="button" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Editar</button>
 									<button type="button" class="btn btn-danger btn-xs"><i class="fa fa-minus-circle"></i> Eliminar</button>
 								</td>
 							</tr>
 							<tr>
-								<td>4</td>
-								<td>Intel Xeon</td>
-								<td>16 GB</td>
-								<td>120 GB</td>
-								<td>DataCenter</td>
-								<td>Informático</td>
+								<td>111112</td>
+								<td>Juana </td>
+								<td>Secretaria</td>
+								<td>Alcaldía</td>
 								<td>
 									<button type="button" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Editar</button>
 									<button type="button" class="btn btn-danger btn-xs"><i class="fa fa-minus-circle"></i> Eliminar</button>
 								</td>
 							</tr>
 							<tr>
-								<td>5</td>
-								<td>Pentium II</td>
-								<td>1 GB</td>
-								<td>120 GB</td>
-								<td>Gimnacio Municipal</td>
+								<td>111113</td>
+								<td>Hodor</td>
+								<td>Relaciones Públicas</td>
+								<td>Alcaldía</td>
+								<td>
+									<button type="button" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Editar</button>
+									<button type="button" class="btn btn-danger btn-xs"><i class="fa fa-minus-circle"></i> Eliminar</button>
+								</td>
+							</tr>
+							<tr>
+								<td>111114</td>
+								<td>Ario</td>
 								<td>Encargado Gimnasio</td>
+								<td>Gimnasio</td>
+								<td>
+									<button type="button" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Editar</button>
+									<button type="button" class="btn btn-danger btn-xs"><i class="fa fa-minus-circle"></i> Eliminar</button>
+								</td>
+							</tr>
+							<tr>
+								<td>111115</td>
+								<td>Bram</td>
+								<td>Encargado DataCenter</td>
+								<td>Datacenter</td>
 								<td>
 									<button type="button" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Editar</button>
 									<button type="button" class="btn btn-danger btn-xs"><i class="fa fa-minus-circle"></i> Eliminar</button>
