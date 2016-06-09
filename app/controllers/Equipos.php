@@ -88,7 +88,7 @@
 			 * administradorpuede agregar u editar información de los
 			 * funcionarios
 			 */
-			if (isset($_SESSION['tipo']) && ($_SESSION['tipo'] == 'admin' || $_SESSION['tipo'] == 'encargado') {
+			if (isset($_SESSION['tipo']) && ($_SESSION['tipo'] == 'admin' || $_SESSION['tipo'] == 'encargado')) {
 				/**
 				 * Comprobamos que se haya enviado la variable accion
 				 * en el $_POST y que no venga nulo, sino retornamos un false

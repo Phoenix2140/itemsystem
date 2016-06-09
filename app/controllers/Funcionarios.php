@@ -136,12 +136,5 @@
 
 		}
 
-		/**
-		 * Comprueba si existe un elemento con el mismo
-		 * nombre para no tener datos duplicados
-		 */
-		public function comprobarExistencia(){
-
-		}
 	}
 ?>
