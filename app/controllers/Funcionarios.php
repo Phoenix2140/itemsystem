@@ -78,5 +78,70 @@
 			 */
 			echo $this->view->render($this->config->get('viewsDir').'main.php');
 		}
+
+		/**
+		 * Función que detecta la función enviada por el método post
+		 */
+		public function detectarAccion($post){
+			/**
+			 * Si no es admin, retorna un false, ya que el admin puede agregar u editar
+			 * información de los funcionarios
+			 */
+			if (isset($_SESSION['tipo']) && $_SESSION['tipo'] == 'admin') {
+				/**
+				 * Comprobamos que se haya enviado la variable accion
+				 * en el $_POST y que no venga nulo, sino retornamos un false
+				 */
+				if(isset($post["accion"]) && !is_null($post["accion"])){
+
+					/**
+					 * Utilizamos un switch para cada tipo de accion 
+					 * soportada.
+					 */
+					switch ($post["accion"]) {
+						case 'value':
+							# code...
+							break;
+						
+						default:
+						// echo json_encode(array('return' => false));
+							header('Location: '.$this->config->get('baseUrl').'/funcionarios');
+							break;
+					}
+
+				}else{
+					// echo json_encode(array('return' => false));
+					header('Location: '.$this->config->get('baseUrl').'/funcionarios');
+				}
+
+			}else{
+				// echo json_encode(array('return' => false));
+				header('Location: '.$this->config->get('baseUrl').'/funcionarios');
+			}
+		}
+
+		/**
+		 * Comprueba si existen todos los valores antes de 
+		 * hacer la consulta y crear
+		 */
+		public function comprobarCreacion($post){
+
+		}
+
+		/**
+		 * Obtiene datos de comprobarCreacion(), además
+		 * comprueba que se envíe el identificador
+		 */
+		public function comprobarEdicion($post){
+
+		}
+
+		/**
+		 * Comprueba si existe un elemento con el mismo
+		 * nombre para no tener datos duplicados
+		 */
+		public function comprobarExistencia(){
+
+		}
 	}
 ?>

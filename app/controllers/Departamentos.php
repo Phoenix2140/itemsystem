@@ -151,6 +151,10 @@
 			}
 		}
 
+		public function comprobarEdicion($post){
+			
+		}
+
 		/**
 		 * Función que comprueba si existe un departamento con el mismo nombre
 		 */
