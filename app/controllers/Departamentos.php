@@ -121,13 +121,37 @@
 							if ($this->comprobarCreacion($post)) {
 								$this->departamento->crearDepartamento($post["nombre"]);
 
-								header('Location: '.$this->config->get('baseUrl').'/departamentos');
+								$this->refrescar();
 							}else{
 								// echo json_encode(array('return' => false));
-								header('Location: '.$this->config->get('baseUrl').'/departamentos');
+								$this->refrescar();
 							}
 							break;
 						
+						case 'editar':
+							if($this->comprobarEdicion($post)){
+								$this->departamento->updateDepartamento($post["id"], $post["nombre"]);
+								// echo json_encode(array('return' => true));
+								$this->refrescar();
+							}else{
+								// echo json_encode(array('return' => false));
+								$this->refrescar();
+							}
+							break;
+
+						case 'eliminar':
+							if(isset($post["id"])){
+								$this->departamento->delDepartamentoId($post["id"]);
+
+								// echo json_encode(array('return' => false));
+								$this->refrescar();
+
+							}else{
+								// echo json_encode(array('return' => false));
+								$this->refrescar();
+							}
+							break;
+
 						default:
 							# code...
 							break;
@@ -152,7 +176,11 @@
 		}
 
 		public function comprobarEdicion($post){
-			
+			if(isset($post["id"]) && $this->comprobarCreacion($post)){
+				return true;
+			}else{
+				return false;
+			}
 		}
 
 		/**
@@ -166,6 +194,10 @@
 
 			}
 			return false;
+		}
+
+		public function refrescar(){
+			header('Location: '.$this->config->get('baseUrl').'/departamentos');
 		}
 	}
 ?>
