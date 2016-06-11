@@ -58,7 +58,7 @@
 
 			$this->db->bind(':nombre', $nombre);
 			$this->db->bind(':rut', $rut);
-			$this->db->bind(':depto', $depto)
+			$this->db->bind(':depto', $depto);
 			$this->db->bind(':id', $id);
 
 			$this->db->execute();
