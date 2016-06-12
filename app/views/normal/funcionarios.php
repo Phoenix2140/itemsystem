@@ -11,40 +11,16 @@
 								<th>RUT</th>
 								<th>Nombre</th>
 								<th>Departamento</th>
-								<th>Ubicación</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>111111</td>
-								<td>Juan </td>
-								<td>Alcalde</td>
-								<td>Alcaldía</td>
-							</tr>
-							<tr>
-								<td>111112</td>
-								<td>Juana </td>
-								<td>Secretaria</td>
-								<td>Alcaldía</td>
-							</tr>
-							<tr>
-								<td>111113</td>
-								<td>Hodor</td>
-								<td>Relaciones Públicas</td>
-								<td>Alcaldía</td>
-							</tr>
-							<tr>
-								<td>111114</td>
-								<td>Ario</td>
-								<td>Encargado Gimnasio</td>
-								<td>Gimnasio</td>
-							</tr>
-							<tr>
-								<td>111115</td>
-								<td>Bram</td>
-								<td>Encargado DataCenter</td>
-								<td>Datacenter</td>
-							</tr>
+							<?php foreach ($listaFuncionarios as $funcionario) { ?>
+								<tr>
+									<td><?php echo $funcionario["rut"]; ?></td>
+									<td><?php echo $funcionario["nombre"]; ?> </td>
+									<td><?php echo $listaNombresDepartamentos[$funcionario["depto"]]; ?></td>
+								</tr>
+							<?php } ?>
 						</tbody>
 					</table>
 				</div>

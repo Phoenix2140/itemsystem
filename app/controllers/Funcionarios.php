@@ -136,47 +136,66 @@
 					 */
 					switch ($post["accion"]) {
 						case 'crear':
-							
-							if($this->comprobarCreacion($post)){
-								$this->funcionario->crearFuncionario($post["nombre"], $post["rut"], 
-									$post["departamento"]);
 
-								// echo json_encode(array('return' => true));
-								$this->redireccion();
+							if(isset($_SESSION["tipo"]) && ($_SESSION["tipo"] == 'admin' || $_SESSION["tipo"] == 'encargado')){
+								if($this->comprobarCreacion($post)){
+									$this->funcionario->crearFuncionario($post["nombre"], $post["rut"], 
+										$post["departamento"]);
+
+									// echo json_encode(array('return' => true));
+									$this->redireccion();
+
+								}else{
+									// echo json_encode(array('return' => false));
+									$this->redireccion();
+								}
 
 							}else{
 								// echo json_encode(array('return' => false));
 								$this->redireccion();
 							}
+							
 							break;
 
 						case 'editar':
-							if($this->comprobarEdicion($post)){
-								$this->funcionario->updateFuncionario( $post["id"], $post["nombre"], 
-									$post["rut"], $post["departamento"]);
+							if(isset($_SESSION["tipo"]) && $_SESSION["tipo"] == 'admin'){
+								if($this->comprobarEdicion($post)){
+									$this->funcionario->updateFuncionario( $post["id"], $post["nombre"], 
+										$post["rut"], $post["departamento"]);
 
-								// echo json_encode(array('return' => true));
-								$this->redireccion();
+									// echo json_encode(array('return' => true));
+									$this->redireccion();
+
+								}else{
+									// echo json_encode(array('return' => false));
+									$this->redireccion();
+
+								}
 
 							}else{
 								// echo json_encode(array('return' => false));
 								$this->redireccion();
-
 							}
 							break;
 
 						case 'eliminar':
-							if(isset($post["id"])){
-								$this->funcionario->deleteUsuario($post["id"]);
+							if(isset($_SESSION["tipo"]) && $_SESSION["tipo"] == 'admin'){
+								if(isset($post["id"])){
+									$this->funcionario->deleteUsuario($post["id"]);
 
-								// echo json_encode(array('return' => true));
-								$this->redireccion();
+									// echo json_encode(array('return' => true));
+									$this->redireccion();
+
+								}else{
+									// echo json_encode(array('return' => true));
+									$this->redireccion();
+								}
+								break;
 
 							}else{
-								// echo json_encode(array('return' => true));
+								// echo json_encode(array('return' => false));
 								$this->redireccion();
 							}
-							break;
 						
 						default:
 							// echo json_encode(array('return' => false));
