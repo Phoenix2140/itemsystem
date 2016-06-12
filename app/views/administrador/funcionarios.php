@@ -21,8 +21,8 @@
 									<td><?php echo $funcionario["nombre"]; ?> </td>
 									<td><?php echo $listaNombresDepartamentos[$funcionario["depto"]]; ?></td>
 									<td>
-										<button type="button" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Editar</button>
-										<button type="button" class="btn btn-danger btn-xs"><i class="fa fa-minus-circle"></i> Eliminar</button>
+										<a class="btn btn-primary btn-xs" data-toggle="modal" href='#editar-funcionario-<?php echo $funcionario["id_funcionario"]; ?>'><i class="fa fa-edit"></i> Editar</a>
+										<a class="btn btn-danger btn-xs" data-toggle="modal" href='#del-funcionario-<?php echo $funcionario["id_funcionario"]; ?>'><i class="fa fa-minus-circle"></i> Eliminar</a>
 									</td>
 								</tr>
 							<?php } ?>
@@ -86,3 +86,78 @@
 			</div>
 		</div>
 	</div>
+
+<?php foreach ($listaFuncionarios as $funcionario) { ?>
+	
+	<div class="modal fade" id="editar-funcionario-<?php echo $funcionario["id_funcionario"] ?>">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title">Editar Funcionario</h4>
+				</div>
+				<div class="modal-body">
+					<form action="" method="POST" class="form-horizontal" role="form">
+							<input type="hidden" name="accion" class="form-control" value="editar">
+							<input type="hidden" name="id" class="form-control" value="<?php echo $funcionario["id_funcionario"] ?>">
+							<div class="form-group">
+								<label for="nombre" class="col-xs-12 col-sm-2">Nombre</label>
+								<div class="col-xs-12 col-sm-10">
+									<input type="text" name="nombre" class="form-control" required="required" value="<?php echo $funcionario["nombre"]; ?>" placeholder="Ingrese el nombre del funcionario">
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label for="rut" class="col-xs-12 col-sm-2">Rut</label>
+								<div class="col-xs-12 col-sm-10">
+									<input type="text" name="rut" class="form-control" required="required" value="<?php echo $funcionario["rut"]; ?>" placeholder="Ingrese el rut del funcionario">
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label for="departamento" class="col-xs-12 col-sm-2">Departamento</label>
+								<div class="col-xs-12 col-sm-10">
+									<select name="departamento" class="form-control" required="required">
+										<?php foreach ($listaDepartamentos as $departamento) { ?>
+											<option value="<?php echo $departamento["id_depto"]; ?>" <?php if($departamento["id_depto"] == $funcionario["depto"]){ echo "selected=\"selected\""; } ?>><?php echo $departamento["nombre_depto"]; ?></option>						
+										<?php } ?>
+									</select>
+								</div>
+							</div>
+					
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+					<button type="submit" class="btn btn-primary">Guardar</button>
+				</div>
+					</form>
+					
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="del-funcionario-<?php echo $funcionario["id_funcionario"]; ?>">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title">Crear Funcionario</h4>
+				</div>
+				<div class="modal-body">
+					<p>Realmente desea <span class="text-danger">eliminar</span> al funcionario <b><?php echo $funcionario["nombre"]; ?></b>.</p>
+					<form action="" method="POST" class="form-horizontal" role="form">
+						<input type="hidden" name="accion" class="form-control" value="eliminar">
+						<input type="hidden" name="id" class="form-control" value="<?php echo $funcionario["id_funcionario"]; ?>">
+							
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+					<button type="submit" class="btn btn-danger">Eliminar</button>
+				</div>
+					</form>
+					
+			</div>
+		</div>
+	</div>
+
+<?php } ?>

@@ -138,13 +138,42 @@
 						case 'crear':
 							
 							if($this->comprobarCreacion($post)){
-								$this->funcionario->crearFuncionario($post["nombre"], $post["rut"], $post["departamento"]);
+								$this->funcionario->crearFuncionario($post["nombre"], $post["rut"], 
+									$post["departamento"]);
 
 								// echo json_encode(array('return' => true));
 								$this->redireccion();
 
 							}else{
 								// echo json_encode(array('return' => false));
+								$this->redireccion();
+							}
+							break;
+
+						case 'editar':
+							if($this->comprobarEdicion($post)){
+								$this->funcionario->updateFuncionario( $post["id"], $post["nombre"], 
+									$post["rut"], $post["departamento"]);
+
+								// echo json_encode(array('return' => true));
+								$this->redireccion();
+
+							}else{
+								// echo json_encode(array('return' => false));
+								$this->redireccion();
+
+							}
+							break;
+
+						case 'eliminar':
+							if(isset($post["id"])){
+								$this->funcionario->deleteUsuario($post["id"]);
+
+								// echo json_encode(array('return' => true));
+								$this->redireccion();
+
+							}else{
+								// echo json_encode(array('return' => true));
 								$this->redireccion();
 							}
 							break;
@@ -184,7 +213,11 @@
 		 * comprueba que se envíe el identificador
 		 */
 		public function comprobarEdicion($post){
-
+			if(isset($post["id"]) && $this->comprobarCreacion($post)){
+				return true;
+			}else{
+				return false;
+			}
 		}
 
 		/**
