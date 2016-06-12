@@ -170,6 +170,11 @@
 				$departamento->detectarAccion($_POST);
 				
 				break;
+
+			case 'funcionarios':
+				
+				$funcionario->detectarAccion($_POST);
+				break;
 			
 			default:
 				# code...
