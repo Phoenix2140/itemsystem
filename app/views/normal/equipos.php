@@ -1,4 +1,4 @@
-<div class="container col-xs-12 col-sm-10 col-sm-offset-1">
+	<div class="container col-xs-12 col-sm-10 col-sm-offset-1">
 		<div class="panel panel-info">
 			<div class="panel-heading">
 				<h3 class="panel-title"><i class="fa fa-users"></i> Equipos</h3>
@@ -17,46 +17,17 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>1</td>
-								<td>Intel Celeron</td>
-								<td>1 GB</td>
-								<td>120 GB</td>
-								<td>Municipalidad</td>
-								<td>Secretaria</td>
-							</tr>
-							<tr>
-								<td>2</td>
-								<td>AMD</td>
-								<td>1 GB</td>
-								<td>120 GB</td>
-								<td>Municipalidad</td>
-								<td>Relaciones Públicas</td>
-							</tr>
-							<tr>
-								<td>3</td>
-								<td>Intel Core i5</td>
-								<td>4 GB</td>
-								<td>120 GB</td>
-								<td>Oficina Alcaldía</td>
-								<td>Alcalde</td>
-							</tr>
-							<tr>
-								<td>4</td>
-								<td>Intel Xeon</td>
-								<td>16 GB</td>
-								<td>120 GB</td>
-								<td>DataCenter</td>
-								<td>Informático</td>
-							</tr>
-							<tr>
-								<td>5</td>
-								<td>Pentium II</td>
-								<td>1 GB</td>
-								<td>120 GB</td>
-								<td>Gimnacio Municipal</td>
-								<td>Encargado Gimnasio</td>
-							</tr>
+							<?php foreach ($listaEquipos as $eq) { ?>
+								<tr>
+									<td><?php echo $eq["id_articulo"]; ?></td>
+									<td><?php echo $arrayTipos[$eq["tipoArticulo"]]; ?></td>
+									<td><?php echo $eq["descripcion_articulo"]; ?></td>
+									<td><?php echo $arrayEstados[$eq["estado"]]["descripcion"]; ?></td>
+									<td><?php if($arrayEstados[$eq["estado"]]["utilizable"]){ echo "Si"; }else{ echo "No"; } ; ?></td>
+									<td><?php echo $arrayDepartamentos[$eq["depto"]]; ?></td>
+								</tr>
+							<?php } ?>
+							
 						</tbody>
 					</table>
 				</div>
@@ -67,3 +38,5 @@
 			</div>
 		</div>
 	</div>
+
+	
