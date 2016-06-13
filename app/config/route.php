@@ -18,6 +18,7 @@
 	require_once($config->get('controllersDir').'Funcionarios.php');
 	require_once($config->get('controllersDir').'Usuarios.php');
 	require_once($config->get('controllersDir').'TipoArticulos.php');
+	require_once($config->get('controllersDir').'Estados.php');
 	require_once($config->get('controllersDir').'Salir.php');
 	$home = new Home($config);
 	$login = new Login($config);
@@ -27,6 +28,7 @@
 	$funcionario = new Funcionarios($config);
 	$usuario = new Usuarios($config);
 	$tipoArticulos = new TipoArticulos($config);
+	$estados = new Estados($config);
 	$salir = new Salir($config);
 
 	
@@ -141,6 +143,17 @@
 				}
 				break;
 
+			case 'estados':
+				/**
+				 * Comprobamos si el usuario está loggeado
+				 */
+				if (isset($_SESSION["user"]) && !is_null($_SESSION["user"])) {
+					return $estados->indexAction();
+				}else{
+					header('Location: '.$config->get('baseUrl'));
+				}
+				break;
+
 			case 'usuarios':
 				/**
 				 * Llamamos a la función principal
@@ -193,6 +206,11 @@
 			case 'tipos':
 				
 				$tipoArticulos->detectarAccion($_POST);
+				break;
+
+			case 'estados':
+				
+				$estados->detectarAccion($_POST);
 				break;
 			
 			default:

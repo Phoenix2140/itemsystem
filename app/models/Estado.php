@@ -4,7 +4,7 @@
 	 * Estructura de la base de datos
 	 *		id_estado	 			INT
 	 *		descripcion_estado 		VARCHAR(45)
-	 *		utilizable 				BOOLEAN
+	 *		ultilizable 				BOOLEAN
 	 */
 	Class Estado{
 		private $db;
@@ -21,7 +21,7 @@
 		 */
 		public function crearEstado($desEstado, $utilizable){
 			$this->db->query("INSERT INTO Estado (descripcion_estado, 
-				utilizable) VALUES (:desEstado, :utilizable)");
+				ultilizable) VALUES (:desEstado, :utilizable)");
 
 			/**
 			 * Se unen los valores asignados a la query y se limpian
@@ -52,7 +52,7 @@
 		 */
 		public function updateEstado($id, $desEstado, $utilizable){
 			$this->db->query("UPDATE Estado SET descripcion_estado=:desEstado,
-			utilizable=:utilizable WHERE id_estado=:id");
+			ultilizable=:utilizable WHERE id_estado=:id");
 
 			$this->db->bind(':desEstado', $desEstado);
 			$this->db->bind(':utilizable', $utilizable);

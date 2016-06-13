@@ -9,6 +9,8 @@
 					<a href="<?php echo $baseUrl; ?>/equipos" type="button" class="btn btn-primary btn-lg btn-block btn-panel"><i class="fa fa-laptop"></i> Administrar Equipos</a>
 					<a href="<?php echo $baseUrl; ?>/funcionarios" type="button" class="btn btn-primary btn-lg btn-block btn-panel"><i class="fa fa-users"></i> Administrar Funcionarios</a>
 					<a href="<?php echo $baseUrl; ?>/departamentos" type="button" class="btn btn-primary btn-lg btn-block btn-panel"><i class="fa fa-building"></i> Administrar Departamentos</a>
+					<a href="<?php echo $baseUrl; ?>/tipos" type="button" class="btn btn-primary btn-lg btn-block btn-panel"><i class="fa fa-building"></i> Administrar Tipo Artículos</a>
+					<a href="<?php echo $baseUrl; ?>/estados" type="button" class="btn btn-primary btn-lg btn-block btn-panel"><i class="fa fa-building"></i> Administrar Estado Artículos</a>
 					<a href="<?php echo $baseUrl; ?>/usuarios" type="button" class="btn btn-primary btn-lg btn-block btn-panel"><i class="fa fa-building"></i> Administrar Usuarios</a>
 					<a href="<?php echo $baseUrl; ?>/salir" type="button" class="btn btn-danger btn-lg btn-block btn-panel"><i class="fa fa-user-times"></i> Salir</a>
 				</div>
