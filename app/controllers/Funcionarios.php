@@ -84,7 +84,7 @@
 				$this->view->menu = $this->view->render($this->config->get('viewsDir').'menu/admin.php');
 
 				/**
-				 * Agregamos la pantalla panel a la vista
+				 * Agregamos la pantalla a la vista
 				 */
 				$this->view->contenido = $this->view->render($this->config->get('viewsDir').'administrador/funcionarios.php');
 			}elseif($_SESSION["tipo"] == 'encargado'){
@@ -104,7 +104,7 @@
 				$this->view->menu = $this->view->render($this->config->get('viewsDir').'menu/encargado.php');
 
 				/**
-				 * Agregamos la pantalla panel a la vista
+				 * Agregamos la pantalla a la vista
 				 */
 				$this->view->contenido = $this->view->render($this->config->get('viewsDir').'normal/funcionarios.php');
 			}
@@ -120,10 +120,10 @@
 		 */
 		public function detectarAccion($post){
 			/**
-			 * Si no es admin, retorna un false, ya que el admin puede agregar u editar
+			 * Si no es admin o encargado, retorna un false, ya que el admin puede agregar u editar
 			 * información de los funcionarios
 			 */
-			if (isset($_SESSION['tipo']) && $_SESSION['tipo'] == 'admin') {
+			if (isset($_SESSION['tipo']) && ($_SESSION['tipo'] == 'admin' || $_SESSION["tipo"] == 'encargado')) {
 				/**
 				 * Comprobamos que se haya enviado la variable accion
 				 * en el $_POST y que no venga nulo, sino retornamos un false
@@ -137,27 +137,25 @@
 					switch ($post["accion"]) {
 						case 'crear':
 
-							if(isset($_SESSION["tipo"]) && ($_SESSION["tipo"] == 'admin' || $_SESSION["tipo"] == 'encargado')){
-								if($this->comprobarCreacion($post)){
-									$this->funcionario->crearFuncionario($post["nombre"], $post["rut"], 
-										$post["departamento"]);
+							if($this->comprobarCreacion($post)){
+								$this->funcionario->crearFuncionario($post["nombre"], $post["rut"], 
+									$post["departamento"]);
 
-									// echo json_encode(array('return' => true));
-									$this->redireccion();
-
-								}else{
-									// echo json_encode(array('return' => false));
-									$this->redireccion();
-								}
+								// echo json_encode(array('return' => true));
+								$this->redireccion();
 
 							}else{
-								// echo json_encode(array('return' => false));
+								echo json_encode(array('return' => false));
 								$this->redireccion();
 							}
+						
 							
 							break;
 
 						case 'editar':
+							/**
+							 * Esta acción solo la puede realizar un usuario de tipo "admin"
+							 */
 							if(isset($_SESSION["tipo"]) && $_SESSION["tipo"] == 'admin'){
 								if($this->comprobarEdicion($post)){
 									$this->funcionario->updateFuncionario( $post["id"], $post["nombre"], 
@@ -179,6 +177,9 @@
 							break;
 
 						case 'eliminar':
+							/**
+							 * Esta acción solo la puede realizar un usuario de tipo "admin"
+							 */
 							if(isset($_SESSION["tipo"]) && $_SESSION["tipo"] == 'admin'){
 								if(isset($post["id"])){
 									$this->funcionario->deleteUsuario($post["id"]);
@@ -244,7 +245,7 @@
 		 */
 		public function comprobarExistenciaFuncionario($nombre){
 			foreach ($this->funcionario->getFuncionario() as $funcionario) {
-				if($funcionario["nombre"] == $nombre_depto){
+				if($funcionario["nombre"] == $nombre){
 					return true;
 				}
 			}
