@@ -21,8 +21,8 @@
 									<td><?php echo $estado["descripcion_estado"]; ?></td>
 									<td><?php if($estado["ultilizable"]){ echo "Si"; }else{ echo "No"; } ?></td>
 									<td>
-										<a class="btn btn-primary btn-xs" data-toggle="modal" href="#ed-user-<?php echo $estado["id_estado"]; ?>"><i class="fa fa-edit"></i> Editar</a>
-										<a class="btn btn-danger btn-xs" data-toggle="modal" href="#del-user-<?php echo $estado["id_estado"]; ?>"><i class="fa fa-minus-circle"></i> Eliminar</a>
+										<a class="btn btn-primary btn-xs" data-toggle="modal" href="#ed-user-<?php echo $estado["id_estado"]; ?>" disabled="disabled"><i class="fa fa-edit"></i> Editar</a>
+										<a class="btn btn-danger btn-xs" data-toggle="modal" href="#del-user-<?php echo $estado["id_estado"]; ?>" disabled="disabled"><i class="fa fa-minus-circle"></i> Eliminar</a>
 									</td>
 								</tr>
 							<?php } ?>

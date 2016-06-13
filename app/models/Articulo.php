@@ -15,6 +15,18 @@
 			$this->db = new Database($config);
 		}
 
+		public function crearArticulo($descripcion, $depto, $estado, $tipo){
+			$this->db->query("INSERT INTO Articulo (descripcion_articulo, depto, estado, tipoArticulo) 
+				VALUES (:descripcion, :depto, :estado, :tipo)");
+
+			$this->db->bind(':descripcion', $descripcion);
+			$this->db->bind(':depto', $depto);
+			$this->db->bind(':estado', $estado);
+			$this->db->bind(':tipo', $tipo);
+
+			$this->db->execute();
+		}
+
 		/**
 		 * Función que cuenta todos los artículos por el departamento
 		 */
@@ -27,10 +39,23 @@
 		}
 
 		/**
+		 * Función que cuenta todos los artículos por el departamento
+		 */
+		public function gertArticuloDepartamento($depto){
+			$this->db->query("SELECT * FROM Articulo WHERE depto=:depto");
+
+			$this->db->bind(':depto', $depto);
+
+			return $this->db->resultSet();
+		}
+
+		/**
 		 * Función que obtiene todos los articulos segun estado
 		 */
-		public function getArticuloEstado(){
+		public function getArticuloEstado($estado){
 			$this->db->query("SELECT * FROM Articulo WHERE estado=:estado");
+
+			$this->db->bind(':estado', $estado);
 
 			/**
 			 * Retorna todos los estados con resultSet()
@@ -41,12 +66,22 @@
 		/**
 		 * Función que obtiene todos los articulos segun tipo
 		 */
-		public function getArticuloTipo(){
+		public function getArticuloTipo($tipo){
 			$this->db->query("SELECT * FROM Articulo WHERE tipoArticulo=:tipoArticulo");
 
+			$this->db->bind(':estado', $tipo);
 			/**
 			 * Retorna todos los estados con resultSet()
 			 */
+			return $this->db->resultSet();
+		}
+
+		/**
+		 * Función que devuelve todos los Articulos
+		 */
+		public function getArticulos(){
+			$this->db->query("SELECT * FROM Articulo");
+
 			return $this->db->resultSet();
 		}
 

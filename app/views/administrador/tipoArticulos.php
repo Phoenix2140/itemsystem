@@ -19,8 +19,8 @@
 									<td><?php echo $tipo["id_tipoArticulo"]; ?></td>
 									<td><?php echo $tipo["descripcion_tipoArticulo"]; ?></td>
 									<td>
-										<a class="btn btn-primary btn-xs" data-toggle="modal" href="#ed-user-<?php echo $tipo["id_tipoArticulo"]; ?>"><i class="fa fa-edit"></i> Editar</a>
-										<a class="btn btn-danger btn-xs" data-toggle="modal" href="#del-user-<?php echo $tipo["id_tipoArticulo"]; ?>"><i class="fa fa-minus-circle"></i> Eliminar</a>
+										<a class="btn btn-primary btn-xs" data-toggle="modal" href="#ed-user-<?php echo $tipo["id_tipoArticulo"]; ?>" disabled="disabled"><i class="fa fa-edit"></i> Editar</a>
+										<a class="btn btn-danger btn-xs" data-toggle="modal" href="#del-user-<?php echo $tipo["id_tipoArticulo"]; ?>" disabled="disabled"><i class="fa fa-minus-circle"></i> Eliminar</a>
 									</td>
 								</tr>
 							<?php } ?>

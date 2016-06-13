@@ -186,6 +186,13 @@
 				$login->login($_POST);
 
 				break;
+
+			case 'equipos':
+
+				$equipo->detectarAccion($_POST);
+
+				break;
+
 			case 'usuarios':
 
 				$usuario->detectarAccion($_POST);

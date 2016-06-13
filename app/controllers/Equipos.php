@@ -7,6 +7,10 @@
 	Class Equipos{
 		private $config;
 		private $view;
+		private $articulo;
+		private $estado;
+		private $tipo;
+		private $departamento;
 
 		/**
 		 * Se crea la función construct, que recibe  la configuración y
@@ -23,6 +27,30 @@
 			 */
 			require_once($this->config->get('baseDir').'Template.php');
 			$this->view = new Template();
+
+			/**
+			 * Cargamos el modelo Artículo
+			 */
+			require_once($this->config->get('modelsDir').'Articulo.php');
+			$this->articulo = new Articulo($this->config);
+
+			/**
+			 * Cargamos el modelo Estado
+			 */
+			require_once($this->config->get('modelsDir').'Estado.php');
+			$this->estado = new Estado($this->config);
+
+			/**
+			 * Cargamos el modelo TipoArticulo
+			 */
+			require_once($this->config->get('modelsDir').'TipoArticulo.php');
+			$this->tipo = new TipoArticulo($this->config);
+
+			/**
+			 * Cargamos el modelo Departamento
+			 */
+			require_once($this->config->get('modelsDir').'Departamento.php');
+			$this->departamento = new Departamento($this->config);
 		}
 
 		/**
@@ -40,6 +68,50 @@
 			 * de public
 			 */
 			$this->view->baseUrl = $this->config->get('baseUrl');
+
+			/**
+			 * Cobtenemos los datos de Departamento, los asignamos a un 
+			 * array (para facilidad de acceso) y una lista en bruto para
+			 * recorrerla en los formularios
+			 */
+			$auxArray = array(); //Se crea el array Auxiliar
+			foreach ($this->departamento->getDepartamentos() as $depto) {
+				$auxArray[$depto["id_depto"]] = $depto["nombre_depto"];
+			}
+			$this->view->arrayDepartamentos = $auxArray;
+			$this->view->listaDepartamentos = $this->departamento->getDepartamentos();
+
+			/**
+			 * Cobtenemos los datos de TipoArticulo, los asignamos a un 
+			 * array (para facilidad de acceso) y una lista en bruto para
+			 * recorrerla en los formularios
+			 */
+			$auxArray = array(); // Se limpia el array Auxiliar
+			foreach ($this->tipo->getTipoArticulo() as $tipoAr) {
+				$auxArray[$tipoAr["id_tipoArticulo"]] = $tipoAr["descripcion_tipoArticulo"];
+			}
+			$this->view->arrayTipos = $auxArray;
+			$this->view->listaTipos = $this->tipo->getTipoArticulo();
+
+			/**
+			 * Cobtenemos los datos de Estado, los asignamos a un 
+			 * array (para facilidad de acceso) y una lista en bruto para
+			 * recorrerla en los formularios
+			 */
+			$auxArray = array(); // Se limpia el array Auxiliar
+			foreach ($this->estado->getEstado() as $estadoAr) {
+				$auxArray[$estadoAr["id_estado"]] = array('descripcion' => $estadoAr["descripcion_estado"], 
+					'utilizable' => $estadoAr["ultilizable"]);
+			}
+			$this->view->arrayEstados = $auxArray;
+			$this->view->listaEstados = $this->estado->getEstado();
+
+			/**
+			 * Obtenemos la lista de Articulos o Equipos
+			 */
+			$this->view->listaEquipos = $this->articulo->getArticulos();
+
+
 
 			if ($_SESSION["tipo"] == 'admin') {
 				/**
@@ -100,24 +172,33 @@
 					 * soportada.
 					 */
 					switch ($post["accion"]) {
-						case 'value':
-							# code...
+						case 'crear':
+							if($this->comprobarCreacion($post)){
+								$this->articulo->crearArticulo( $post["descripcion"], $post["departamento"], 
+									$post["estado-articulo"], $post["tipo-articulo"]);
+
+								$this->redireccion();
+
+							}else{
+								// echo json_encode(array('return' => false));
+								$this->redireccion();
+							}
 							break;
 						
 						default:
-						// echo json_encode(array('return' => false));
-							header('Location: '.$this->config->get('baseUrl').'/equipos');
+							// echo json_encode(array('return' => false));
+							$this->redireccion();
 							break;
 					}
 
 				}else{
 					// echo json_encode(array('return' => false));
-					header('Location: '.$this->config->get('baseUrl').'/equipos');
+					$this->redireccion();
 				}
 
 			}else{
 				// echo json_encode(array('return' => false));
-				header('Location: '.$this->config->get('baseUrl').'/equipos');
+				$this->redireccion();
 			}
 		}
 
@@ -126,7 +207,12 @@
 		 * hacer la consulta y crear
 		 */
 		public function comprobarCreacion($post){
-
+			if(isset($post["tipo-articulo"]) && isset($post["descripcion"]) && 
+				isset($post["estado-articulo"]) && isset($post["departamento"])){
+				return true;
+			}else{
+				return false;
+			}
 		}
 
 		/**
@@ -138,11 +224,10 @@
 		}
 
 		/**
-		 * Comprueba si existe un elemento con el mismo
-		 * nombre para no tener datos duplicados
+		 * Función que recarga la pagina
 		 */
-		public function comprobarExistencia(){
-
+		public function redireccion(){
+			header('Location: '.$this->config->get('baseUrl').'/equipos');
 		}
 	}
 ?>

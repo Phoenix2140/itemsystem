@@ -66,7 +66,12 @@
 			 */
 			$contar = array();
 			foreach ($this->departamento->getDepartamentos() as $depto) {
-				$contar[$depto["id_depto"]] = $this->articulo->contarArticulosDepartamentoId($depto["id_depto"]);
+				$contar[$depto["id_depto"]] = 0;
+
+				foreach ($this->articulo->gertArticuloDepartamento($depto["id_depto"]) as $arts) {
+					++$contar[$depto["id_depto"]];
+				}
+				
 			}
 			$this->view->equiposPorDepartamento = $contar;
 

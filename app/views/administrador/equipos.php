@@ -18,66 +18,21 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>1</td>
-								<td>Intel Celeron</td>
-								<td>1 GB</td>
-								<td>120 GB</td>
-								<td>Municipalidad</td>
-								<td>Secretaria</td>
-								<td>
-									<button type="button" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Editar</button>
-									<button type="button" class="btn btn-danger btn-xs"><i class="fa fa-minus-circle"></i> Eliminar</button>
-								</td>
-							</tr>
-							<tr>
-								<td>2</td>
-								<td>AMD</td>
-								<td>1 GB</td>
-								<td>120 GB</td>
-								<td>Municipalidad</td>
-								<td>Relaciones Públicas</td>
-								<td>
-									<button type="button" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Editar</button>
-									<button type="button" class="btn btn-danger btn-xs"><i class="fa fa-minus-circle"></i> Eliminar</button>
-								</td>
-							</tr>
-							<tr>
-								<td>3</td>
-								<td>Intel Core i5</td>
-								<td>4 GB</td>
-								<td>120 GB</td>
-								<td>Oficina Alcaldía</td>
-								<td>Alcalde</td>
-								<td>
-									<button type="button" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Editar</button>
-									<button type="button" class="btn btn-danger btn-xs"><i class="fa fa-minus-circle"></i> Eliminar</button>
-								</td>
-							</tr>
-							<tr>
-								<td>4</td>
-								<td>Intel Xeon</td>
-								<td>16 GB</td>
-								<td>120 GB</td>
-								<td>DataCenter</td>
-								<td>Informático</td>
-								<td>
-									<button type="button" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Editar</button>
-									<button type="button" class="btn btn-danger btn-xs"><i class="fa fa-minus-circle"></i> Eliminar</button>
-								</td>
-							</tr>
-							<tr>
-								<td>5</td>
-								<td>Pentium II</td>
-								<td>1 GB</td>
-								<td>120 GB</td>
-								<td>Gimnacio Municipal</td>
-								<td>Encargado Gimnasio</td>
-								<td>
-									<button type="button" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Editar</button>
-									<button type="button" class="btn btn-danger btn-xs"><i class="fa fa-minus-circle"></i> Eliminar</button>
-								</td>
-							</tr>
+							<?php foreach ($listaEquipos as $eq) { ?>
+								<tr>
+									<td><?php echo $eq["id_articulo"]; ?></td>
+									<td><?php echo $arrayTipos[$eq["tipoArticulo"]]; ?></td>
+									<td><?php echo $eq["descripcion_articulo"]; ?></td>
+									<td><?php echo $arrayEstados[$eq["estado"]]["descripcion"]; ?></td>
+									<td><?php if($arrayEstados[$eq["estado"]]["utilizable"]){ echo "Si"; }else{ echo "No"; } ; ?></td>
+									<td><?php echo $arrayDepartamentos[$eq["depto"]]; ?></td>
+									<td>
+										<button type="button" class="btn btn-primary btn-xs" disabled="disabled"><i class="fa fa-edit"></i> Editar</button>
+										<button type="button" class="btn btn-danger btn-xs" disabled="disabled"><i class="fa fa-minus-circle"></i> Eliminar</button>
+									</td>
+								</tr>
+							<?php } ?>
+							
 						</tbody>
 					</table>
 				</div>
@@ -86,8 +41,67 @@
 					<a href="<?php echo $baseUrl; ?>/panel" type="button" class="btn btn-default btn-block"><i class="fa fa-arrow-circle-left"></i> Volver</a>
 				</div>
 				<div class="col-xs-12 col-sm-3">
-					<button type="button" class="btn btn-primary btn-block"><i class="fa fa-plus"></i> Crear Registro</button>
+					<a class="btn btn-primary btn-block" data-toggle="modal" href='#crear-articulo'><i class="fa fa-plus"></i> Crear Registro</a>
 				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="crear-articulo">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title">Crear un Registro</h4>
+				</div>
+				<div class="modal-body">
+					<form action="" method="POST" class="form-horizontal" role="form">
+							<input type="hidden" name="accion" class="form-control" value="crear">
+							<div class="form-group">
+								<label for="tipo-articulo" class="col-xs-12 col-sm-2">Tipo Artículo</label>
+								<div class="col-xs-12 col-sm-10">
+									<select name="tipo-articulo" id="tipo-articulo" class="form-control" required="required">
+										<?php foreach ($listaTipos as $ltipo) { ?>
+											<option value="<?php echo $ltipo["id_tipoArticulo"] ?>"><?php echo $ltipo["descripcion_tipoArticulo"] ?></option>	
+										<?php } ?>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="descripcion" class="col-xs-12 col-sm-2">Descripción</label>
+								<div class="col-xs-12 col-sm-10">
+									<input type="text" name="descripcion" id="descripcion" class="form-control" required="required" placeholder="Ingrese pequeña descripción del artículo">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="estado-articulo" class="col-xs-12 col-sm-2">Estado</label>
+								<div class="col-xs-12 col-sm-10">
+									<select name="estado-articulo" id="estado-articulo" class="form-control" required="required">
+										<?php foreach ($listaEstados as $lestado) { ?>
+											<option value="<?php echo $lestado["id_estado"]; ?>"><?php echo $lestado["descripcion_estado"]; ?> - <?php if (!$lestado["ultilizable"]){ echo "NO ";} ?>Utilizable</option>
+										<?php } ?>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="departamento" class="col-xs-12 col-sm-2">Departamento</label>
+								<div class="col-xs-12 col-sm-10">
+									<select name="departamento" id="departamento" class="form-control" required="required">
+										<?php foreach ($listaDepartamentos as $ldepto) { ?>
+											<option value="<?php echo $ldepto["id_depto"]; ?>"><?php echo $ldepto["nombre_depto"]; ?></option>
+										<?php } ?>
+									</select>
+								</div>
+							</div>
+							
+					
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+					<button type="submit" class="btn btn-primary">Guardar</button>
+				</div>
+					</form>
+					
 			</div>
 		</div>
 	</div>

@@ -1,4 +1,4 @@
-<div class="container col-xs-12 col-sm-10 col-sm-offset-1">
+	<div class="container col-xs-12 col-sm-10 col-sm-offset-1">
 		<div class="panel panel-info">
 			<div class="panel-heading">
 				<h3 class="panel-title"><i class="fa fa-building"></i> Departamentos</h3>
