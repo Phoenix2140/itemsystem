@@ -141,7 +141,7 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					<h4 class="modal-title">Crear Funcionario</h4>
+					<h4 class="modal-title">Eliminar Funcionario</h4>
 				</div>
 				<div class="modal-body">
 					<p>Realmente desea <span class="text-danger">eliminar</span> al funcionario <b><?php echo $funcionario["nombre"]; ?></b>.</p>

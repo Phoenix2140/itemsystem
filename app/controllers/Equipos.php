@@ -184,6 +184,21 @@
 								$this->redireccion();
 							}
 							break;
+						case 'eliminar':
+							if ($_SESSION['tipo'] == 'admin') {
+								if($this->comprobarID($post)){
+									$this->articulo->deleteArticulo($post["id"]);
+
+									$this->redireccion();
+								}else{
+									$this->redireccion();
+								}
+
+							} else {
+								$this->redireccion();
+							}
+							
+							break;
 						
 						default:
 							// echo json_encode(array('return' => false));
@@ -221,6 +236,18 @@
 		 */
 		public function comprobarEdicion($post){
 
+		}
+
+		/**
+		 * Comprobamos si se envía la ID, útil para eliminar 
+		 * o editar un item
+		 */
+		public function comprobarID($post){
+			if(isset($post["id"]) && !is_null($post["id"])){
+				return true;
+			}else{
+				return false;
+			}
 		}
 
 		/**

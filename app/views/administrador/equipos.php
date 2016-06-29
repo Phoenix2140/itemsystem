@@ -28,7 +28,7 @@
 									<td><?php echo $arrayDepartamentos[$eq["depto"]]; ?></td>
 									<td>
 										<button type="button" class="btn btn-primary btn-xs" disabled="disabled"><i class="fa fa-edit"></i> Editar</button>
-										<button type="button" class="btn btn-danger btn-xs" disabled="disabled"><i class="fa fa-minus-circle"></i> Eliminar</button>
+										<a class="btn btn-danger btn-xs" data-toggle="modal" href='#del-equipo-<?php echo $eq["id_articulo"]; ?>'><i class="fa fa-minus-circle"></i> Eliminar</a>
 									</td>
 								</tr>
 							<?php } ?>
@@ -105,3 +105,34 @@
 			</div>
 		</div>
 	</div>
+
+<?php 
+	foreach ($listaEquipos as $eq) { ?>
+
+		<!--Eliminar equipo-->
+		<div class="modal fade" id="del-equipo-<?php echo $eq["id_articulo"]; ?>">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title">Eliminar equipo</h4>
+				</div>
+				<div class="modal-body">
+					<p>Realmente desea <span class="text-danger">eliminar</span> el equipo N° <b><?php echo $eq["id_articulo"]; ?></b>, 
+						cuya descripción es: <b><?php echo $eq["descripcion_articulo"]; ?></b>.</p>
+					<form action="" method="POST" class="form-horizontal" role="form">
+						<input type="hidden" name="accion" class="form-control" value="eliminar">
+						<input type="hidden" name="id" class="form-control" value="<?php echo $eq["id_articulo"]; ?>">
+							
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+					<button type="submit" class="btn btn-danger">Eliminar</button>
+				</div>
+					</form>
+					
+			</div>
+		</div>
+	</div>
+
+<?php } ?>
