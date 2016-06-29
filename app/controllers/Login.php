@@ -68,9 +68,11 @@
 					$_SESSION["user"] = $user["nombreUsuario"];
 					$_SESSION["tipo"] = $user["tipoUsuario"];
 
-					header('Location: '.$this->config->get('baseUrl').'/panel');
+					//header('Location: '.$this->config->get('baseUrl').'/panel');
+					echo json_encode(array('response' => true, 'link' => $this->config->get('baseUrl').'/panel'));
 				}else{
-					echo json_encode(array('result' => false));
+					echo json_encode(array('response' => false));
+					//header('Location: '.$this->config->get('baseUrl').'/login');
 				}
 			}
 		}

@@ -17,8 +17,11 @@
 					
 							<div class="form-group">
 								<div class="col-sm-4 col-sm-offset-4">
-									<button type="submit" class="btn btn-primary btn-block">Ingresar</button>
+									<button id="l-login-btn" type="submit" class="btn btn-primary btn-block">Ingresar</button>
 								</div>
+							</div>
+							<div id="l-msg">
+								
 							</div>
 					</form>
 				</div>

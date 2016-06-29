@@ -17,5 +17,6 @@
 	</footer>
 	<script src="<?php echo $baseUrl; ?>/js/jquery-1.12.3.min.js"></script>
 	<script src="<?php echo $baseUrl; ?>/js/bootstrap.min.js"></script>
+	<script src="<?php echo $baseUrl; ?>/js/main.min.js"></script>
 </body>
 </html>
