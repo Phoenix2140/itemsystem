@@ -10,6 +10,7 @@
 	 * Se cargan todos los controladores que son necesarios
 	 * para las distintas rutas y se crean objetos de estas.
 	 */
+	require_once($config->get('controllersDir').'404.php');
 	require_once($config->get('controllersDir').'Home.php');
 	require_once($config->get('controllersDir').'Login.php');
 	require_once($config->get('controllersDir').'Panel.php');
@@ -20,6 +21,7 @@
 	require_once($config->get('controllersDir').'TipoArticulos.php');
 	require_once($config->get('controllersDir').'Estados.php');
 	require_once($config->get('controllersDir').'Salir.php');
+	$error404 = new Error404($config);
 	$home = new Home($config);
 	$login = new Login($config);
 	$panel = new Panel($config);
@@ -170,7 +172,8 @@
 				break;
 			
 			default:
-				# code...
+			
+				return $error404->indexAction();
 				break;
 		}
 
