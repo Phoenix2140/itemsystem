@@ -168,6 +168,14 @@
 			case 'salir':
 				return $salir->salir();
 				break;
+
+			case 'test':
+				var_dump(getenv(OPENSHIFT_MYSQL_DB_HOST));
+
+				var_dump($OPENSHIFT_MYSQL_DB_HOST);
+
+				var_dump("OPENSHIFT_MYSQL_DB_HOST");
+				break;
 			
 			default:
 				# code...

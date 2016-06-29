@@ -2,6 +2,7 @@
 		<div class="panel panel-info">
 			<div class="panel-body cabecera-panel">
 				<div class="titulo"><h1>ITEMSYSTEM</h1></div>
+				<div><h4>Bienvenido <span class="text-info"><?php echo $_SESSION["user"]; ?></span>.</h4></div>
 				<div class="subtitulo">Selecciona una de las siguientes opciones</div>
 			</div>
 			<div class="row panel-botones">
