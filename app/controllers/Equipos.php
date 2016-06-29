@@ -184,6 +184,16 @@
 								$this->redireccion();
 							}
 							break;
+						case 'editar':
+							if($this->comprobarEdicion($post)){
+								$this->articulo->updateArticulo($post["id"], $post["descripcion"], $post["departamento"], 
+									$post["estado-articulo"], $post["tipo-articulo"]);
+
+								$this->redireccion();
+							}else{
+								$this->redireccion();
+							}
+							break;
 						case 'eliminar':
 							if ($_SESSION['tipo'] == 'admin') {
 								if($this->comprobarID($post)){
@@ -235,7 +245,11 @@
 		 * comprueba que se envíe el identificador
 		 */
 		public function comprobarEdicion($post){
-
+			if($this->comprobarID($post) && $this->comprobarCreacion($post)){
+				return true;
+			}else{
+				return false;
+			}
 		}
 
 		/**

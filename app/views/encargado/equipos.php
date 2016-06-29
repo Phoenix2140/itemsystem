@@ -104,3 +104,8 @@
 			</div>
 		</div>
 	</div>
+
+<?php 
+	foreach ($listaEquipos as $eq) { ?>
+
+<?php }?>

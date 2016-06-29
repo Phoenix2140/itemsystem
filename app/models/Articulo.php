@@ -94,7 +94,7 @@
 
 			$this->db->bind(':desArticulo', $desArticulo);
 			$this->db->bind(':depto', $depto);
-			$this->db->bind(':estado', $destado);
+			$this->db->bind(':estado', $estado);
 			$this->db->bind(':tipoArticulo', $tipoArticulo);
 			$this->db->bind(':id', $id);
 

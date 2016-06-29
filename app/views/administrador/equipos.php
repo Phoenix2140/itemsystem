@@ -27,7 +27,7 @@
 									<td><?php if($arrayEstados[$eq["estado"]]["utilizable"]){ echo "Si"; }else{ echo "No"; } ; ?></td>
 									<td><?php echo $arrayDepartamentos[$eq["depto"]]; ?></td>
 									<td>
-										<button type="button" class="btn btn-primary btn-xs" disabled="disabled"><i class="fa fa-edit"></i> Editar</button>
+										<a class="btn btn-primary btn-xs" data-toggle="modal" href='#ed-equipo-<?php echo $eq["id_articulo"]; ?>'><i class="fa fa-edit"></i> Editar</a>
 										<a class="btn btn-danger btn-xs" data-toggle="modal" href='#del-equipo-<?php echo $eq["id_articulo"]; ?>'><i class="fa fa-minus-circle"></i> Eliminar</a>
 									</td>
 								</tr>
@@ -108,6 +108,67 @@
 
 <?php 
 	foreach ($listaEquipos as $eq) { ?>
+		<!--Editar equipo-->
+		<div class="modal fade" id="ed-equipo-<?php echo $eq["id_articulo"]; ?>">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title">Editar equipo</h4>
+					</div>
+					<div class="modal-body">
+						<form action="" method="POST" class="form-horizontal" role="form">
+								<input type="hidden" name="accion" class="form-control" value="editar">
+								<input type="hidden" name="id" class="form-control" value="<?php echo $eq["id_articulo"]; ?>">
+								<div class="form-group">
+									<label for="tipo-articulo" class="col-xs-12 col-sm-2">Tipo Artículo</label>
+									<div class="col-xs-12 col-sm-10">
+										<select name="tipo-articulo" id="tipo-articulo" class="form-control" required="required">
+											<?php foreach ($listaTipos as $ltipo) { ?>
+												<option value="<?php echo $ltipo["id_tipoArticulo"] ?>" <?php if($ltipo["id_tipoArticulo"] == $eq["tipoArticulo"]){ echo "selected=\"selected\"";} ?>><?php echo $ltipo["descripcion_tipoArticulo"] ?></option>	
+											<?php } ?>
+										</select>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="descripcion" class="col-xs-12 col-sm-2">Descripción</label>
+									<div class="col-xs-12 col-sm-10">
+										<input type="text" name="descripcion" id="descripcion" class="form-control" required="required" value="<?php echo $eq["descripcion_articulo"]; ?>" placeholder="Ingrese pequeña descripción del artículo">
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="estado-articulo" class="col-xs-12 col-sm-2">Estado</label>
+									<div class="col-xs-12 col-sm-10">
+										<select name="estado-articulo" id="estado-articulo" class="form-control" required="required">
+											<?php foreach ($listaEstados as $lestado) { ?>
+												<option value="<?php echo $lestado["id_estado"]; ?>" <?php if($lestado["id_estado"] == $eq["estado"]){ echo "selected=\"selected\"";} ?>><?php echo $lestado["descripcion_estado"]; ?> - <?php if (!$lestado["ultilizable"]){ echo "NO ";} ?>Utilizable</option>
+											<?php } ?>
+										</select>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="departamento" class="col-xs-12 col-sm-2">Departamento</label>
+									<div class="col-xs-12 col-sm-10">
+										<select name="departamento" id="departamento" class="form-control" required="required">
+											<?php foreach ($listaDepartamentos as $ldepto) { ?>
+												<option value="<?php echo $ldepto["id_depto"]; ?>" <?php if($ldepto["id_depto"] == $eq["depto"]){} ?>><?php echo $ldepto["nombre_depto"]; ?></option>
+											<?php } ?>
+										</select>
+									</div>
+								</div>
+								
+						
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+						<button type="submit" class="btn btn-primary">Guardar</button>
+					</div>
+						</form>
+						
+				</div>
+			</div>
+		</div>
+
 
 		<!--Eliminar equipo-->
 		<div class="modal fade" id="del-equipo-<?php echo $eq["id_articulo"]; ?>">
