@@ -19,8 +19,8 @@
 									<td><?php echo $tipo["id_tipoArticulo"]; ?></td>
 									<td><?php echo $tipo["descripcion_tipoArticulo"]; ?></td>
 									<td>
-										<a class="btn btn-primary btn-xs" data-toggle="modal" href="#ed-user-<?php echo $tipo["id_tipoArticulo"]; ?>" disabled="disabled"><i class="fa fa-edit"></i> Editar</a>
-										<a class="btn btn-danger btn-xs" data-toggle="modal" href="#del-user-<?php echo $tipo["id_tipoArticulo"]; ?>" disabled="disabled"><i class="fa fa-minus-circle"></i> Eliminar</a>
+										<a class="btn btn-primary btn-xs" data-toggle="modal" href="#ed-tipo-<?php echo $tipo["id_tipoArticulo"]; ?>"><i class="fa fa-edit"></i> Editar</a>
+										<a class="btn btn-danger btn-xs" data-toggle="modal" href='#del-tipo-<?php echo $tipo["id_tipoArticulo"]; ?>'><i class="fa fa-minus-circle"></i> Eliminar</a>
 									</td>
 								</tr>
 							<?php } ?>
@@ -64,3 +64,61 @@
 			</div>
 		</div>
 	</div>
+
+<?php foreach ($listaTipos as $tipo) { ?>
+
+	<!--Editar tipo articulo-->
+	<div class="modal fade" id="ed-tipo-<?php echo $tipo["id_tipoArticulo"]; ?>">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title">Editar Tipo Artículo</h4>
+				</div>
+				<div class="modal-body">
+					<form action="" method="POST" class="form-horizontal" role="form">
+						<input type="hidden" name="accion" class="form-control" value="editar">
+						<input type="hidden" name="id" class="form-control" value="<?php echo $tipo["id_tipoArticulo"]; ?>">
+						<div class="form-group">
+							<label for="tipo-articulo" class="col-xs-12 col-sm-2">Tipo artículo</label>
+							<div class="col-xs-12 col-sm-10">
+								<input type="text" name="tipo-articulo" id="tipo-articulo" class="form-control" required="required" placeholder="Ingrese el tipo de artículo que desea agregar a la lista" value="<?php echo $tipo["descripcion_tipoArticulo"]; ?>">
+							</div>
+						</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+					<button type="submit" class="btn btn-primary">Guardar</button>
+				</div>
+					</form>
+					
+			</div>
+		</div>
+	</div>
+
+	<!--Eliminar tipo articulo-->
+	<div class="modal fade" id="del-tipo-<?php echo $tipo["id_tipoArticulo"]; ?>">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title">Eliminar Tipo Artículo</h4>
+				</div>
+				<div class="modal-body">
+					<p>Realmente desea <span class="text-danger">eliminar</span> el el tipo de artículo <b><?php echo $tipo["descripcion_tipoArticulo"]; ?></b>.</p>
+					<form action="" method="POST" class="form-horizontal" role="form">
+						<input type="hidden" name="accion" class="form-control" value="eliminar">
+						<input type="hidden" name="id" class="form-control" value="<?php echo $tipo["id_tipoArticulo"]; ?>">
+							
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+					<button type="submit" class="btn btn-danger">Eliminar</button>
+				</div>
+					</form>
+					
+			</div>
+		</div>
+	</div>
+
+<?php } ?>

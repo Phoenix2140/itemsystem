@@ -67,6 +67,10 @@
 
 		}
 
+		/**
+		 * Función que detecta la acción a tomar por el método POST
+		 * enviado desde las rutas.
+		 */
 		public function detectarAccion($post){
 			/**
 			 * Si no es admin o encargado, retorna un false, ya que el admin puede agregar u editar
@@ -91,6 +95,35 @@
 								$this->redireccion();
 							}
 							break;
+
+						case 'editar':
+
+							if ($this->comprobarID($post) && (isset($post["tipo-articulo"]) 
+								&& $this->comprobarCreacion($post["tipo-articulo"]))) {
+
+								$this->tipoArticulo->updateTipoArticulo($post["id"], $post["tipo-articulo"]);
+								
+								// echo json_encode(array('return' => true));
+								$this->redireccion();
+							}else {
+								
+								// echo json_encode(array('return' => false));
+								$this->redireccion();
+							}
+
+							
+							break;
+
+						case 'eliminar':
+							if ($this->comprobarID($post)) {
+
+								$this->tipoArticulo->deleteTipoArticulo($post["id"]);
+								
+								$this->redireccion();
+							} else {
+								$this->redireccion();
+							}
+							break;
 						
 						default:
 							# code...
@@ -107,6 +140,10 @@
 			}
 		}
 
+		/**
+		 * Comprobamos que la descripción del artículo que exista y no sea nulo,
+		 * además que no se repita. si pasa los controles se retorna true.
+		 */
 		public function comprobarCreacion($desTipoArticulo){
 			if(isset($desTipoArticulo) && !is_null($desTipoArticulo) && !$this->comprobarExistencia($desTipoArticulo)){
 				return true;
@@ -115,15 +152,35 @@
 			}
 		}
 
+		/**
+		 * Función que comprueba si existe una descrićión del mismo nombre
+		 */
 		public function comprobarExistencia($descripcion){
+			$str = strtolower($descripcion);
 			foreach ($this->tipoArticulo->getTipoArticulo() as $tipo) {
-				if ($tipo["descripcion_tipoArticulo"] == $descripcion) {
+				if (strtolower($tipo["descripcion_tipoArticulo"]) == $str) {
 					return true;
 				}
 			}
 			return false;
 		}
 
+		/**
+		 * Comprobamos si los datos enviados pos POST exista una
+		 * variable "id" y que no sea nulo
+		 */
+		public function comprobarID($post){
+			if (isset($post["id"]) && !is_null($post["id"])) {
+				return true;
+			} else {
+				return false;
+			}
+			
+		}
+
+		/**
+		 * Redireccionamos la página
+		 */
 		public function redireccion(){
 			header('Location: '.$this->config->get('baseUrl').'/tipos');
 		}
