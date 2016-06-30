@@ -92,6 +92,32 @@
 								$this->redireccion();
 							}
 							break;
+
+						case 'editar':
+							if ( $this->comprobarID($post) && $this->comprobarCreacion($post)) {
+
+								$this->estado->updateEstado( $post["id"], $post["estado-articulo"], $post["utilizable"]);
+								
+								$this->redireccion();
+							} else {
+								
+								$this->redireccion();
+							}
+							
+							break;
+
+						case 'eliminar':
+							if ($this->comprobarID($post)) {
+
+								$this->estado->deleteEstado($post["id"]);
+								
+								$this->redireccion();
+							} else {
+								
+								$this->redireccion();
+							}
+							
+							break;
 						
 						default:
 							# code...
@@ -108,6 +134,9 @@
 			}
 		}
 
+		/**
+		 * Comprobamos si son enviados los parametros correctos
+		 */
 		public function comprobarCreacion($post){
 			if(isset($post["estado-articulo"]) && isset($post["utilizable"]) && 
 				!$this->comprobarExistencia($post["estado-articulo"])){
@@ -117,6 +146,9 @@
 			}
 		}
 
+		/**
+		 * Comprobamos que no se repita la descripción en la basede datos
+		 */
 		public function comprobarExistencia($descripcion){
 			foreach ($this->estado->getEstado() as $estado) {
 				if ($tipo["descripcion_estado"] == $descripcion) {
@@ -124,6 +156,19 @@
 				}
 			}
 			return false;
+		}
+
+		/**
+		 * Verificamos si se envía la variable ID mediante el 
+		 * método POST
+		 */
+		public function comprobarID($post){
+			if (isset($post["id"]) && !is_null($post["id"])) {
+				return true;
+			} else {
+				return false;
+			}
+			
 		}
 
 		public function redireccion(){

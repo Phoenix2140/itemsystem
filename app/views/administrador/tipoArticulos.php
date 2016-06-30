@@ -105,7 +105,7 @@
 					<h4 class="modal-title">Eliminar Tipo Artículo</h4>
 				</div>
 				<div class="modal-body">
-					<p>Realmente desea <span class="text-danger">eliminar</span> el el tipo de artículo <b><?php echo $tipo["descripcion_tipoArticulo"]; ?></b>.</p>
+					<p>Realmente desea <span class="text-danger">eliminar</span> el tipo de artículo <b><?php echo $tipo["descripcion_tipoArticulo"]; ?></b>.</p>
 					<form action="" method="POST" class="form-horizontal" role="form">
 						<input type="hidden" name="accion" class="form-control" value="eliminar">
 						<input type="hidden" name="id" class="form-control" value="<?php echo $tipo["id_tipoArticulo"]; ?>">
